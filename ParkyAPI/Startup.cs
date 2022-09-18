@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using ParkyAPI.Data;
 using ParkyAPI.Mapper;
 using ParkyAPI.Repositories;
+using ParkyAPI.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,7 +36,9 @@ namespace ParkyAPI
             services.AddDbContext<ApplicationDbContext>
             (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped<INationalParkService, NationalParkService>();
             services.AddScoped<INationalParkRepository, NationalParkRepository>();
+
             services.AddAutoMapper(typeof(ParkyMappings));
 
             services.AddSwaggerGen(options =>
@@ -49,7 +52,6 @@ namespace ParkyAPI
                     });
 
             });
-
 
             services.AddControllers();
         }

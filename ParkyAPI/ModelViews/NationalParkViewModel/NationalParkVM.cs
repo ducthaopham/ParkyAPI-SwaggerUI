@@ -1,14 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System;
 
-namespace ParkyAPI.Models.Dtos
+namespace ParkyAPI.ModelViews.NationalParkViewModel
 {
-    public class NationalParkDto 
+    public class NationalParkVM
     {
         public int Id { get; set; }
-        [Required]
         public string Name { get; set; }
-        [Required]
         public string State { get; set; }
         public DateTime Created { get; set; }
         public DateTime Established { get; set; }
