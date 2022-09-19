@@ -4,7 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace ParkyAPI.Repositories
+namespace ParkyAPI.Repositories.RepositoryNationalPark
 {
     public class NationalParkRepository : INationalParkRepository
     {
@@ -33,7 +33,7 @@ namespace ParkyAPI.Repositories
         {
             _db.NationalParks.Add(nationalPark);
         }
-        public void DeleteById(NationalPark nationalPark) 
+        public void DeleteById(NationalPark nationalPark)
         {
             _db.NationalParks.Remove(nationalPark);
         }
@@ -48,5 +48,5 @@ namespace ParkyAPI.Repositories
         }
 
 
-    }      
+    }
 }

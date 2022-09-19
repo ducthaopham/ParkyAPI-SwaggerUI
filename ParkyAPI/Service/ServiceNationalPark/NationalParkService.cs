@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using ParkyAPI.Models;
 using ParkyAPI.ModelViews.NationalParkViewModel;
-using ParkyAPI.Repositories;
+using ParkyAPI.Repositories.RepositoryNationalPark;
 using System.Collections.Generic;
 
-namespace ParkyAPI.Service
+namespace ParkyAPI.Service.ServiceNationalPark
 {
     public class NationalParkService : INationalParkService
     {
@@ -48,8 +48,8 @@ namespace ParkyAPI.Service
         public NationalParkVM DeleteById(int id)
         {
             var obj = _repo.GetById(id);
-            if (obj == null) 
-                return null; 
+            if (obj == null)
+                return null;
 
             var objVM = _mapper.Map<NationalParkVM>(obj);
             _repo.DeleteById(obj);
@@ -59,10 +59,11 @@ namespace ParkyAPI.Service
 
         public NationalParkVM UpdateById(int id, NationalParkVM objVM)
         {
-            if(objVM == null || objVM.Id  != id) 
-                return null;
 
-            var obj = _repo.GetById(id);
+            if(objVM == null || objVM.Id != id)
+                return null;
+              
+            var obj = _mapper.Map<NationalPark>(objVM);  
             _repo.UpdateById(obj);
             _repo.Save();
             return objVM;

@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using ParkyAPI.Models;
 using ParkyAPI.ModelViews.NationalParkViewModel;
 using ParkyAPI.Repositories;
-using ParkyAPI.Service;
+using ParkyAPI.Service.ServiceNationalPark;
 using System;
 using System.Collections.Generic;
 

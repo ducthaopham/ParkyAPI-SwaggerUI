@@ -4,7 +4,7 @@ using ParkyAPI.ModelViews.NationalParkViewModel;
 using ParkyAPI.Repositories;
 using System.Collections.Generic;
 
-namespace ParkyAPI.Service
+namespace ParkyAPI.Service.ServiceNationalPark
 {
     public interface INationalParkService
     {

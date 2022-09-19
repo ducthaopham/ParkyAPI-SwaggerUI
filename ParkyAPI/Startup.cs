@@ -10,8 +10,10 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using ParkyAPI.Data;
 using ParkyAPI.Mapper;
-using ParkyAPI.Repositories;
-using ParkyAPI.Service;
+using ParkyAPI.Repositories.RepositoryNationalPark;
+using ParkyAPI.Repositories.RepositoryTrail;
+using ParkyAPI.Service.ServiceNationalPark;
+using ParkyAPI.Service.ServiceTrail;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +39,9 @@ namespace ParkyAPI
             (options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddScoped<INationalParkService, NationalParkService>();
+            services.AddScoped<ITrailService, TrailService>();
             services.AddScoped<INationalParkRepository, NationalParkRepository>();
+            services.AddScoped<ITrailRepository, TrailRepository>();
 
             services.AddAutoMapper(typeof(ParkyMappings));
 

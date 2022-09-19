@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 
-namespace ParkyAPI.Repositories
+namespace ParkyAPI.Repositories.RepositoryNationalPark
 {
     public interface INationalParkRepository
     {
