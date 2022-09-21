@@ -10,8 +10,11 @@ using System.Collections.Generic;
 
 namespace ParkyAPI.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/nationalparks")]
+    //[ApiController]
+
     [ApiController]
+    [Route("api/v{version:apiVersion}/nationalparks")]
     public class NationalParksController : ControllerBase
     {
         private readonly INationalParkService _ser;

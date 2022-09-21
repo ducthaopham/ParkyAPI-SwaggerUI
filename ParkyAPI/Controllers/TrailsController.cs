@@ -5,8 +5,11 @@ using ParkyAPI.Service.ServiceTrail;
 
 namespace ParkyAPI.Controllers
 {
-    [Route("api/[controller]")]
+    //[Route("api/trails")]
+    //[ApiController]
+
     [ApiController]
+    [Route("api/v{version:apiVersion}/trails")]
     public class TrailsController : ControllerBase
     {
         private readonly ITrailService _ser;
