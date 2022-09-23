@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using ParkyWeb.Repository;
+using ParkyWeb.Repository.IRepository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,9 @@ namespace ParkyWeb
         {
             services.AddControllersWithViews().AddRazorRuntimeCompilation();
             services.AddHttpClient();
+
+            services.AddScoped<INationalParkRepo, NationalParkRepo>();
+            services.AddScoped<ITrailRepo, TrailRepo>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
