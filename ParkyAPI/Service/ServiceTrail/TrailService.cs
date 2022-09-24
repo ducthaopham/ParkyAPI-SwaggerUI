@@ -51,40 +51,40 @@ namespace ParkyAPI.Service.ServiceTrail
             return objsVM;
         }
 
-        public TrailCreateVM DeleteById(int id) 
+        public bool  DeleteById(int id) 
         {
             var obj = _repo.GetById(id);
             if (obj == null)
-                return null;
+                return false;
 
             _repo.DeleteById(obj);
             _repo.Save();
             var objVM = _mapper.Map<TrailCreateVM>(obj);
-            return objVM;
+            return true;
         }
-        public TrailCreateVM CreateNew(TrailCreateVM objVM) 
+        public bool CreateNew(TrailCreateVM objVM) 
         {
             var objNP = _repoNP.GetById(objVM.NationalParkId);
             if (objNP == null)
-                return null;
+                return false;
                 
 
             var obj = _mapper.Map<Trail>(objVM);
             _repo.CreateNew(obj);
             _repo.Save();
-            return objVM;
+            return true;
         }
 
-        public TrailVM UpdateById(int id, TrailVM objVM) 
+        public bool UpdateById(int id, TrailVM objVM) 
         {
             var objNP = _repoNP.GetById(objVM.NationalParkId);
             if (objVM == null || objVM.Id != id || objNP == null)   
-                return null;
+                return false;
 
             var obj = _mapper.Map<Trail>(objVM);
             _repo.UpdateById(obj);
             _repo.Save();
-            return objVM;
+            return true ;
         }
     } 
 }

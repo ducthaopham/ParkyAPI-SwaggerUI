@@ -5,11 +5,10 @@ using ParkyAPI.Service.ServiceTrail;
 
 namespace ParkyAPI.Controllers
 {
-    //[Route("api/trails")]
-    //[ApiController]
-
+    [Route("api/trails")]
     [ApiController]
-    [Route("api/v{version:apiVersion}/trails")]
+
+
     public class TrailsController : ControllerBase
     {
         private readonly ITrailService _ser;
@@ -27,27 +26,37 @@ namespace ParkyAPI.Controllers
         [HttpGet("id")]
         public IActionResult GetById(int id)
         {
+            if(_ser.GetById(id) == null)
+                return NotFound();
             return Ok(_ser.GetById(id));
         }
         [HttpGet("name")]
         public IActionResult GetByName(string name)
         {
+            if (_ser.GetByName(name) == null)
+                return NotFound();
             return Ok(_ser.GetByName(name));
         }
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult CreateNew(TrailCreateVM vm)
         {
-            return Ok(_ser.CreateNew(vm));
+            if(!_ser.CreateNew(vm))
+                return BadRequest();
+            return Ok();
         }
         [HttpDelete]
         public IActionResult DeleteById(int id)
         {
-            return Ok(_ser.DeleteById(id));
+            if (!_ser.DeleteById(id))
+                return BadRequest();
+            return NoContent();
         }
         [HttpPatch]
         public IActionResult UpdateById(int id, TrailVM vm)
         {
-            return Ok(_ser.UpdateById(id, vm));
+            if(!_ser.UpdateById(id, vm))
+                return BadRequest();
+            return NoContent();
         }
     }
 }

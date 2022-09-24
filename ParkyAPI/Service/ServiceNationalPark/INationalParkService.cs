@@ -11,9 +11,9 @@ namespace ParkyAPI.Service.ServiceNationalPark
         public List<NationalParkVM> GetAll();
         public NationalParkVM GetById(int id);
         public List<NationalParkVM> GetByName(string name);
-        public NationalParkCreateVM CreateNew(NationalParkCreateVM objVM);
-        public NationalParkVM DeleteById(int id);
-        public NationalParkVM UpdateById(int id, NationalParkVM objVM);
+        public bool CreateNew(NationalParkCreateVM objVM);
+        public bool DeleteById(int id);
+        public bool UpdateById(int id, NationalParkVM objVM);
 
     }
 }

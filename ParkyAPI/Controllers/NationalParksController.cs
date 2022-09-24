@@ -10,11 +10,9 @@ using System.Collections.Generic;
 
 namespace ParkyAPI.Controllers
 {
-    //[Route("api/nationalparks")]
-    //[ApiController]
-
+    [Route("api/nationalparks")]
     [ApiController]
-    [Route("api/v{version:apiVersion}/nationalparks")]
+
     public class NationalParksController : ControllerBase
     {
         private readonly INationalParkService _ser;
@@ -28,30 +26,40 @@ namespace ParkyAPI.Controllers
         {
             return Ok(_ser.GetAll());    
         }
-        [HttpGet("getbyid")]
+        [HttpGet("id")]
         public IActionResult GetById(int id)
         {
+            if(_ser.GetById(id) == null)
+                return NotFound();
             return Ok(_ser.GetById(id));
         }
-        [HttpGet("getbyname")]
+        [HttpGet("name")]
         public IActionResult GetByName(string name)
         {
+            if (_ser.GetByName(name) == null)
+                return NotFound();
             return Ok(_ser.GetByName(name));
         }
-        [HttpPost]
+        [HttpPost("add")]
         public IActionResult CreateNew(NationalParkCreateVM vm)
         {
-            return Ok(_ser.CreateNew(vm));
+            if (!_ser.CreateNew(vm)) 
+                return BadRequest();
+            return Ok();
         }
-        [HttpPatch]
+        [HttpPatch("update")]
         public IActionResult UpdateById(int id, NationalParkVM vm)
         {
-            return Ok(_ser.UpdateById(id,vm));
+            if (!_ser.UpdateById(id,vm))
+                return BadRequest();
+            return NoContent();
         }
-        [HttpDelete]
+        [HttpDelete("delete")]
         public IActionResult DeleteById(int id)
         {
-            return Ok(_ser.DeleteById(id));
+            if(!_ser.DeleteById(id))
+                return BadRequest();
+            return NoContent();
         }
     }
 }

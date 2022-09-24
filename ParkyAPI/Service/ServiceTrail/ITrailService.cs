@@ -9,9 +9,9 @@ namespace ParkyAPI.Service.ServiceTrail
         List<TrailNPNameVM> GetAll();
         List<TrailNPNameVM> GetByName(string name);
         TrailNPNameVM GetById(int id);
-        TrailCreateVM CreateNew( TrailCreateVM model);
-        TrailVM UpdateById(int id, TrailVM model);
-        TrailCreateVM DeleteById(int id);
+        bool CreateNew( TrailCreateVM model);
+        bool UpdateById(int id, TrailVM model);
+        bool DeleteById(int id);
        
     }
 }

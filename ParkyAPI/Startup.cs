@@ -41,17 +41,6 @@ namespace ParkyAPI
              
             services.AddAutoMapper(typeof(ParkyMappings));
 
-            //***versioning
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddApiVersioning(options =>
-            {
-                options.AssumeDefaultVersionWhenUnspecified = true;
-                options.DefaultApiVersion = new ApiVersion(1, 0);
-                options.ReportApiVersions = true;
-            });
-            services.AddVersionedApiExplorer(options => options.GroupNameFormat = "'v'VVV");
-            //***
-
 
             services.AddSwaggerGen(options =>
             {
@@ -69,7 +58,7 @@ namespace ParkyAPI
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, /*versioning*/IApiVersionDescriptionProvider provider)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
             if (env.IsDevelopment())
             {
@@ -91,11 +80,7 @@ namespace ParkyAPI
             app.UseSwagger();
             app.UseSwaggerUI(options =>
             {
-                //options.SwaggerEndpoint("/swagger/ParkyOpenAPISpec/swagger.json", "Parky API");
-                //***versioning
-                foreach (var desc in provider.ApiVersionDescriptions)
-                    options.SwaggerEndpoint($"/swagger/{desc.GroupName}/swagger.json", desc.GroupName.ToUpperInvariant());
-                //***
+                options.SwaggerEndpoint("/swagger/ParkyOpenAPISpec/swagger.json", "Parky API");
             });
         }
     }

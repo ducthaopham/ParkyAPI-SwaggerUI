@@ -8,9 +8,10 @@ namespace ParkyWeb.Repository.IRepository
     {
         Task<T> GetAsync(string url, int id);
         Task<IEnumerable<T>> GetAllAsync(string url);
-        Task<bool> CreateAsync (string url, T obj);  
-        Task<bool> UpdateAsync (string url, T obj);
-        Task<bool> DeleteAsync (string url, int id);
+        Task<bool> CreateAsync(string url, T obj);
+        Task<bool> UpdateAsync(string url, T obj);
+        Task<bool> DeleteAsync(string url, int id);
 
     }
 }
+

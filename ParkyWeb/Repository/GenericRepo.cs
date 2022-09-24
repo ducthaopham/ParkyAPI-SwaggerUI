@@ -32,7 +32,7 @@ namespace ParkyWeb.Repository
 
         public async Task<bool> DeleteAsync(string url, int id)
         {
-            var request = new HttpRequestMessage(HttpMethod.Delete, url+id);
+            var request = new HttpRequestMessage(HttpMethod.Delete, url + id);
             var client = _clientF.CreateClient();
             HttpResponseMessage response = await client.SendAsync(request);
             if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
@@ -45,7 +45,7 @@ namespace ParkyWeb.Repository
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var client = _clientF.CreateClient();
             HttpResponseMessage response = await client.SendAsync(request);
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 var jsonString = await response.Content.ReadAsStringAsync();    
                 return JsonConvert.DeserializeObject<IEnumerable<T>>(jsonString);
@@ -83,3 +83,4 @@ namespace ParkyWeb.Repository
         }
     }
 }
+

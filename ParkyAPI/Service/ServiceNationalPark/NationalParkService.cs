@@ -26,6 +26,8 @@ namespace ParkyAPI.Service.ServiceNationalPark
         public NationalParkVM GetById(int id)
         {
             var obj = _repo.GetById(id);
+            if (obj == null) 
+                return null;
             var objVM = _mapper.Map<NationalParkVM>(obj);
             return objVM;
         }
@@ -33,40 +35,42 @@ namespace ParkyAPI.Service.ServiceNationalPark
         public List<NationalParkVM> GetByName(string name)
         {
             var objs = _repo.GetByName(name);
+            if (objs == null)
+                return null;
             var objsVM = _mapper.Map<List<NationalParkVM>>(objs);
             return objsVM;
         }
 
-        public NationalParkCreateVM CreateNew(NationalParkCreateVM objVM)
+        public bool CreateNew(NationalParkCreateVM objVM)
         {
             var obj = _mapper.Map<NationalPark>(objVM);
             _repo.CreateNew(obj);
             _repo.Save();
-            return objVM;
+            return true;
         }
 
-        public NationalParkVM DeleteById(int id)
+        public bool DeleteById(int id)
         {
             var obj = _repo.GetById(id);
             if (obj == null)
-                return null;
+                return false;
 
             var objVM = _mapper.Map<NationalParkVM>(obj);
             _repo.DeleteById(obj);
             _repo.Save();
-            return objVM;
+            return true;
         }
 
-        public NationalParkVM UpdateById(int id, NationalParkVM objVM)
+        public bool UpdateById(int id, NationalParkVM objVM)
         {
 
-            if(objVM == null || objVM.Id != id)
-                return null;
+            if (objVM == null || objVM.Id != id)
+                return false;
               
             var obj = _mapper.Map<NationalPark>(objVM);  
             _repo.UpdateById(obj);
             _repo.Save();
-            return objVM;
+            return true;
         }
     }
 }
