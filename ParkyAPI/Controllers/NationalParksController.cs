@@ -25,12 +25,12 @@ namespace ParkyAPI.Controllers
         {
             return Ok(_ser.GetAll());    
         }
-        [HttpGet("getbyid")]
+        [HttpGet("{id}")]
         public IActionResult GetById(int id)
         {
             return Ok(_ser.GetById(id));
         }
-        [HttpGet("getbyname")]
+        [HttpGet("name={name}")]
         public IActionResult GetByName(string name)
         {
             return Ok(_ser.GetByName(name));
